@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_inherit_inspection" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.inspection</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_inspection_pass" 
+                        string="Aprobar Inspección" 
+                        type="object" 
+                        class="oe_highlight" 
+                        invisible="inspection_state != 'draft' or state == 'cancel'"/>
+                
+                <button name="action_inspection_fail" 
+                        string="Rechazar Inspección" 
+                        type="object" 
+                        class="btn-danger" 
+                        invisible="inspection_state != 'draft' or state == 'cancel'"/>
+                
+                <field name="inspection_state" widget="statusbar" statusbar_visible="draft,passed,failed"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
